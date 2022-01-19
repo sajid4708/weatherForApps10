@@ -16,8 +16,9 @@ import com.appstenx.appstenxweather.databinding.ActivityWeatherBinding
 import com.appstenx.appstenxweather.weather.view.ForecastAdapter
 import com.appstenx.appstenxweather.weather.viewmodel.WeatherViewModel
 import com.appstenx.appstenxweather.weather.viewmodel.WeatherViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class WeatherActivity : BaseActivity() {
     private lateinit var binding: ActivityWeatherBinding
     private lateinit var weatherViewModel: WeatherViewModel

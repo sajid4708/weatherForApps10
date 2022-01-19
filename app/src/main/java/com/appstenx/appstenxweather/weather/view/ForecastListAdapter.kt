@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.appstenx.appstenxweather.R
-import com.appstenx.appstenxweather.weather.diffutilcomp.ForeCastDiffUtil
+import com.appstenx.appstenxweather.common.diffutilcomp.ForeCastDiffUtil
 import com.appstenx.appstenxweather.weather.model.ForeCastData
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ViewHolder>() {

@@ -1,4 +1,4 @@
-package com.appstenx.appstenxweather.weather.diffutilcomp
+package com.appstenx.appstenxweather.common.diffutilcomp
 
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.DiffUtil
