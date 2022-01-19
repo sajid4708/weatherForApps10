@@ -1,0 +1,48 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.AppsTenXWeather" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:background">@color/app_background</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="currentWeatherTxtStyle" parent="android:Widget.TextView">
+<item name="android:textColor">@color/weat_num_color</item>
+        <item name="android:textSize">@dimen/weath_num_font_size</item>
+
+    </style>
+    <style name="currentWeatherCityStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/weat_city_color</item>
+        <item name="android:textSize">@dimen/weath_city_font_size</item>
+
+
+    </style>
+    <style name="forecastTxtStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/weat_num_color</item>
+        <item name="android:textSize">@dimen/forecast_txt_font_size</item>
+        <item name="android:background">@color/white</item>
+
+
+    </style>
+    <style name="transparentLoadingDialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:background">@android:color/transparent</item>
+
+    </style>
+
+</resources>
