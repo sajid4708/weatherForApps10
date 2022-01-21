@@ -21,12 +21,17 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
     ViewModel() {
     private val currentWeatherStateFlow: MutableStateFlow<ApiState> =
         MutableStateFlow(ApiState.Empty)
+
     val _currentWeatherPostStateFlow: StateFlow<ApiState> = currentWeatherStateFlow
+
     private val forecastStateFlow: MutableStateFlow<ApiState> = MutableStateFlow(ApiState.Empty)
+
     val _forecastWeatherPostStateFlow: StateFlow<ApiState> = forecastStateFlow
+
     private val _currentWeatherLiveData: MutableLiveData<CurrentTempData> by lazy {
         MutableLiveData<CurrentTempData>()
     }
+
     val currentWeatherLiveData: LiveData<CurrentTempData>
         get() = _currentWeatherLiveData
 
@@ -39,7 +44,6 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
     }
     val avgForecastLiveData: MutableLiveData<ListForecastTempDataWithDay>
         get() = _avgForecastLiveData
-
 
 
     fun getCurrentWeatherData() = viewModelScope.launch {
@@ -60,13 +64,13 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
             .catch { e ->
                 forecastStateFlow.value = ApiState.Failure(e)
             }.collect { data ->
-                val avgList=getListOfAverageForeCast(data)
+                val avgList = getListOfAverageForeCast(data)
                 forecastStateFlow.value = ApiState.Success(avgList)
-                _avgForecastLiveData.value= ListForecastTempDataWithDay(avgList.toMutableList())
+                _avgForecastLiveData.value = ListForecastTempDataWithDay(avgList.toMutableList())
             }
     }
 
-    private fun getListOfAverageForeCast(data:ForeCastList):List<ForecastTempDataWithDay>{
+    private fun getListOfAverageForeCast(data: ForeCastList): List<ForecastTempDataWithDay> {
         var weekCircular = CircularDays.getCircularDays()
         while (!weekCircular.data.equals(DayUtils.getDayFromTimeInMilliseconds(System.currentTimeMillis()))) {
             weekCircular = weekCircular.next!!
@@ -74,9 +78,10 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
         val forecastWithTempAndDay = mutableListOf<ForecastTempDataWithDay>()
         for (i in 1..4) {
             val avgTempDay = data.list.filter {
-                DayUtils.getDayFromFormattedString(it.formattedDtText).equals(weekCircular.next!!.data)
+                DayUtils.getDayFromFormattedString(it.formattedDtText)
+                    .equals(weekCircular.next!!.data)
             }
-                .map { it.main?.temp?:0.0 }
+                .map { it.main?.temp ?: 0.0 }
                 .average().toInt()
 
             forecastWithTempAndDay.add(
@@ -90,8 +95,6 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
         }
         return forecastWithTempAndDay;
     }
-
-
 
 
 }

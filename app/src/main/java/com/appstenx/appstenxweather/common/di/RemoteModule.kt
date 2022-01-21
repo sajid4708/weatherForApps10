@@ -37,7 +37,7 @@ class RemoteModule {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .baseUrl(baseUrl)
-            //.client(okHttpClient)
+            .client(okHttpClient)
             .build()
             .create(WeatherService::class.java)
 

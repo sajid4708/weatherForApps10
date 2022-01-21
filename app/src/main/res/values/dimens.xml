@@ -9,4 +9,5 @@
     <dimen name="botton_margin">62dp</dimen>
     <dimen name="padd_recyler">16dp</dimen>
     <dimen name="btn_top">44dp</dimen>
+    <dimen name="forecast_item_height">80dp</dimen>
 </resources>
