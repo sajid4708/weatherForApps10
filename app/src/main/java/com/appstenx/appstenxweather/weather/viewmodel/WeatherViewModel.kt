@@ -2,6 +2,7 @@ package com.appstenx.appstenxweather.weather.viewmodel
 
 import androidx.lifecycle.*
 import com.appstenx.appstenxweather.common.convertToCelsius
+import com.appstenx.appstenxweather.common.convertToCelsiusWithC
 import com.appstenx.appstenxweather.common.utils.CircularDays
 import com.appstenx.appstenxweather.common.utils.DayUtils
 import com.appstenx.appstenxweather.remote.ApiState
@@ -82,11 +83,11 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
                     .equals(weekCircular.next!!.data)
             }
                 .map { it.main?.temp ?: 0.0 }
-                .average().toInt()
+                .average()
 
             forecastWithTempAndDay.add(
                 ForecastTempDataWithDay(
-                    avgTempDay.convertToCelsius(),
+                    avgTempDay.convertToCelsiusWithC(),
                     weekCircular.next!!.data
                 )
             )

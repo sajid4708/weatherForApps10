@@ -1,7 +1,9 @@
 package com.appstenx.appstenxweather.common
 
+const val KelvinConstant=273.15
 fun Double?.convertToCelsius() =
-    if (this != null) this.toInt().toString() + "°" else ""
+    if (this != null) (this- KelvinConstant).toInt().toString() + "°" else ""
 
-fun Int.convertToCelsius() =
-    if (this != null) this.toInt().toString() + " C" else ""
+
+fun Double?.convertToCelsiusWithC() =
+    if (this != null) (this- KelvinConstant).toInt().toString() + " C" else ""
