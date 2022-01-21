@@ -9,13 +9,19 @@ import android.content.Context
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.inputmethod.InputMethodManager
-
+import android.widget.Toast
+import com.appstenx.appstenxweather.weather.viewmodel.WeatherViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 abstract class BaseActivity: AppCompatActivity() {
-    fun openLoader():Dialog{
-        val dialog=Dialog(this, R.style.transparentLoadingDialog)
+var dialog:Dialog?=null;
+    fun openLoader(){
+        if(dialog!=null){
+            return
+        }
+        dialog=Dialog(this, R.style.transparentLoadingDialog)
         val view=LayoutInflater.from(this).inflate(R.layout.progress_loader,null)
-        dialog.apply {
+        dialog?.apply {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
             setContentView(view)
@@ -32,7 +38,12 @@ abstract class BaseActivity: AppCompatActivity() {
             start()
         }
 
-return dialog;
+
+    }
+
+    fun closeLoader(){
+        dialog?.dismiss()
+        dialog=null
     }
     fun dismissKeyBoard() {
         try {

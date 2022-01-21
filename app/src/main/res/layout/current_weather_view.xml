@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="temperature"
+            type="String" />
+        <variable
+            name="city"
+            type="String" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/city"
         style="@style/currentWeatherTxtStyle"
-        android:text="56°"/>
+        android:text="@{temperature}"/>
     <TextView
         android:id="@+id/city"
         android:layout_width="wrap_content"
@@ -21,6 +30,7 @@
         app:layout_constraintStart_toStartOf="@id/temperature"
         app:layout_constraintEnd_toEndOf="@id/temperature"
         app:layout_constraintTop_toBottomOf="@id/temperature"
-        android:text="Banglore"
-        style="@style/currentWeatherCityStyle"/>
+        style="@style/currentWeatherCityStyle"
+        android:text="@{city}"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

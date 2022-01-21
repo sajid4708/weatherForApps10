@@ -3,7 +3,10 @@
     <dimen name="weath_num_font_size">96sp</dimen>
     <dimen name="weath_city_font_size">36sp</dimen>
     <dimen name="forecast_txt_font_size">16sp</dimen>
+    <dimen name="error_txt_font_size">54sp</dimen>
     <!--Current Temperature View-->
     <dimen name="top_margin">56dp</dimen>
     <dimen name="botton_margin">62dp</dimen>
+    <dimen name="padd_recyler">16dp</dimen>
+    <dimen name="btn_top">44dp</dimen>
 </resources>

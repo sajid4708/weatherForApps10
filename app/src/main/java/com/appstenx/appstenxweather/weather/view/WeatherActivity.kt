@@ -3,48 +3,92 @@ package com.appstenx.appstenxweather.weather.view
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
 
-import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
-import com.appstenx.appstenxweather.R
+import androidx.lifecycle.lifecycleScope
+
 import com.appstenx.appstenxweather.common.BaseActivity
+import com.appstenx.appstenxweather.common.Fonts
 import com.appstenx.appstenxweather.databinding.ActivityWeatherBinding
+import com.appstenx.appstenxweather.remote.ApiState
 
-import com.appstenx.appstenxweather.weather.view.ForecastAdapter
 import com.appstenx.appstenxweather.weather.viewmodel.WeatherViewModel
-import com.appstenx.appstenxweather.weather.viewmodel.WeatherViewModelFactory
+
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+
 
 @AndroidEntryPoint
 class WeatherActivity : BaseActivity() {
-    private lateinit var binding: ActivityWeatherBinding
-    private lateinit var weatherViewModel: WeatherViewModel
+    private lateinit var binding:ActivityWeatherBinding
+    private val weatherViewModel: WeatherViewModel by viewModels<WeatherViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initViewModel()
+        binding= ActivityWeatherBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setFonts()
         dismissKeyBoard()
-        val recykyAdapter = ForecastAdapter();
-        findViewById<RecyclerView>(R.id.forecast_recyler).adapter = recykyAdapter;
-        val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        divider.setDrawable(ContextCompat.getDrawable(this, R.drawable.line_seperator)!!)
-        findViewById<RecyclerView>(R.id.forecast_recyler).addItemDecoration(divider)
-        val loaderDialog = openLoader()
-        Handler(Looper.getMainLooper()).postDelayed({
-            runOnUiThread {
-                loaderDialog.cancel()
-            }
-        }, 4000)
+        binding.lifecycleOwner=this
+        binding.weatherViewModel=weatherViewModel
+        getWeatherDataFromRemote()
+        binding.errorView.retryBtn.setOnClickListener {
+           binding.errorView.root.visibility=View.GONE
+            getWeatherDataFromRemote()
+        }
+
     }
 
-    private fun initViewModel() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_weather)
-        binding.lifecycleOwner = this
-        weatherViewModel =
-            ViewModelProvider(this, WeatherViewModelFactory()).get(WeatherViewModel::class.java)
-        binding.weatherViewModel=weatherViewModel
+    private fun setFonts(){
+        binding.currentWeather.temperature.setTypeface(Fonts.robotoBlack)
+        binding.currentWeather.city.setTypeface(Fonts.robotoThin)
+        binding.errorView.textView.setTypeface(Fonts.robotoThin)
     }
-}
+
+    private fun getWeatherDataFromRemote(){
+        weatherViewModel.getCurrentWeatherData()
+
+        lifecycleScope.launchWhenStarted {
+            weatherViewModel._currentWeatherPostStateFlow.collect {
+                when(it){
+                    is ApiState.Success<*> ->{
+                        closeLoader()
+                    }
+                    is ApiState.Loading->{
+                        openLoader()
+                    }
+                    is ApiState.Failure->{
+                        closeLoader()
+                        binding.errorView.root.visibility=View.VISIBLE
+
+                    }
+                }
+            }}
+            weatherViewModel.getForeCastData()
+        lifecycleScope.launchWhenStarted {
+            weatherViewModel._forecastWeatherPostStateFlow.collect {
+                when(it){
+                    is ApiState.Success<*> ->{
+                        closeLoader()
+
+                    }
+                    is ApiState.Loading->{
+                        openLoader()
+                    }
+                    is ApiState.Failure->{
+                        closeLoader()
+                        binding.errorView.root.visibility=View.VISIBLE
+
+                    }
+                }
+            }
+        }
+        }
+
+    }
+
+
+

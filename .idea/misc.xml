@@ -4,7 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/sajid/AndroidStudioProjects/AppsTenXWeather/app/src/main/res/drawable/line_seperator.xml" value="0.1140625" />
+        <entry key="..\:/Users/sajid/AndroidStudioProjects/AppsTenXWeather/app/src/main/res/font/font_style.xml" value="0.234375" />
+        <entry key="..\:/Users/sajid/AndroidStudioProjects/AppsTenXWeather/app/src/main/res/font/roboto.xml" value="0.13177083333333334" />
         <entry key="..\:/Users/sajid/AndroidStudioProjects/AppsTenXWeather/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/sajid/AndroidStudioProjects/AppsTenXWeather/app/src/main/res/layout/activity_weather.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/sajid/AndroidStudioProjects/AppsTenXWeather/app/src/main/res/layout/current_weather_view.xml" value="0.1" />
         <entry key="..\:/Users/sajid/AndroidStudioProjects/AppsTenXWeather/app/src/main/res/layout/error_screen.xml" value="0.1" />
         <entry key="..\:/Users/sajid/AndroidStudioProjects/AppsTenXWeather/app/src/main/res/layout/forecast_bottom_slide.xml" value="0.1" />

@@ -14,25 +14,28 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-    <style name="currentWeatherTxtStyle" parent="android:Widget.TextView">
+    <style name="currentWeatherTxtStyle" parent="Widget.AppCompat.TextView">
 <item name="android:textColor">@color/weat_num_color</item>
         <item name="android:textSize">@dimen/weath_num_font_size</item>
 
+
     </style>
-    <style name="currentWeatherCityStyle" parent="android:Widget.TextView">
+    <style name="currentWeatherCityStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/weat_city_color</item>
         <item name="android:textSize">@dimen/weath_city_font_size</item>
 
 
+
     </style>
-    <style name="forecastTxtStyle" parent="android:Widget.TextView">
+    <style name="forecastTxtStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/weat_num_color</item>
         <item name="android:textSize">@dimen/forecast_txt_font_size</item>
         <item name="android:background">@color/white</item>
 
 
+
     </style>
-    <style name="transparentLoadingDialog">
+    <style name="transparentLoadingDialog" parent="Theme.AppCompat.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsFloating">true</item>
@@ -42,6 +45,13 @@
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:background">@android:color/transparent</item>
+
+    </style>
+
+    <style name="errorinfo" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/error_txt_font_size</item>
+        <item name="android:background">@color/error_screen_bg</item>
 
     </style>
 
